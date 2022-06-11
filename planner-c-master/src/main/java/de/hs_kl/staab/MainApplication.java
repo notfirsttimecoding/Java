@@ -225,7 +225,6 @@ public class MainApplication {
 		System.err.println("---Testing appointment overlaps---");
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-1", "DE-XX-1111", "WP-2",
 				LocalDateTime.of(2021, 12, 26, 10, 5), "dodu1002");
-
 	}
 
 	// MVP05, MMP02
@@ -396,7 +395,6 @@ public class MainApplication {
 		System.out.println("\nAfter:");
 		plannerService.printAppointmentsDetailedFor(
 				plannerService.getAllOpenSortedAppointmentsOnWorkingPlatformAfterNow("WP-2"));
-
 	}
 
 	// MLP040
@@ -472,11 +470,25 @@ public class MainApplication {
 		// We understood the task as in the output - if 3 dates were to be issued across
 		// all platforms, you would only have to put all suggestions in a list and
 		// select the 3 earliest ones.
-
 	}
 
 	// Always test each method above individually by calling it here
 	private static void runApplication() {
+		testWorkClasses();
+		testWorkingPlatformClasses();
+		testVehicleClasses();
+		testCustomerClasses();
+		testUserClasses();
+		testWorkingAppointment();
+		testConsultingAppointment();
+		testCleaningAppointment();
+		testErrorOutputOfUpdateMethodsOfAppointmentClasses();
+		testWeeklyOverview();
+		testYesterdaysOverview();
+		testHistoryOfWorkingAppointmentsForSpecificVehicle();
+		testSortedDailyOverviewOfAllOpenWorkingAppointmentsFor();
+		testCreateNextAvailableCleaningAppointment();
 		testSuggestionOfThreeNextAvailableWorkingAppointmentDates();
+		
 	}
 }
