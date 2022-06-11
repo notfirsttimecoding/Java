@@ -67,26 +67,26 @@ public class MainApplication {
 		workingPlatformService.createAndAddNewWorkingPlatform("WorkingPlatform 3");
 		workingPlatformService.createAndAddNewWorkingPlatform("WorkingPlatform 4");
 
-		vehicleService.createAndAddNewVehicle("Opel", "Corsa", 2020, "KL-TW-1906", LocalDateTime.of(2020, 6, 19, 0, 0));
+		vehicleService.createAndAddNewVehicle("Opel", "Corsa", 2020, "DE-XX-1111", LocalDateTime.of(2020, 6, 19, 0, 0));
 		vehicleService.createAndAddNewVehicle("Opel", "Corsa-E", 2021, "KL-JW-123",
 				LocalDateTime.of(2021, 11, 11, 0, 0));
-		vehicleService.createAndAddNewVehicle("Audi", "e-tron GT", 2021, "ZW-CM-23",
+		vehicleService.createAndAddNewVehicle("Audi", "e-tron GT", 2021, "DE-YY-2222",
 				LocalDateTime.of(2021, 2, 23, 0, 0));
-		vehicleService.createAndAddNewVehicle("Audi", "A3", 2008, "ZW-JN-156", LocalDateTime.of(2021, 11, 11, 0, 0));
+		vehicleService.createAndAddNewVehicle("Audi", "A3", 2008, "DE-JW-123", LocalDateTime.of(2021, 11, 11, 0, 0));
 
-		customerService.createAndAddNewCustomer("Tom", "Williard", "Blumenstraße", 8, 67697, "Otterberg", "0162-123456",
+		customerService.createAndAddNewCustomer("Jerry", "Mouse", "Alphastraße", 1, 11111, "Alphastadt", "0162-123456",
 				"test@123.de");
 		customerService.createAndAddNewCustomer("Jakub", "Wachowiak", "Musterstraße", 99, 99999, "Berlin",
 				"0631-124562", "jw@gmail.com");
-		customerService.createAndAddNewCustomer("Caroline", "Mock", "Stadtrand", 007, 66538, "Neunkirchen",
-				"0172-13288456", "cm@mail.com");
-		customerService.addVehicleToCustomersVehicles("C-2", "ZW-JN-156");
+		customerService.createAndAddNewCustomer("Donald", "Duck", "Disneystraße", 007, 77777, "Neustadt",
+				"0172-13288456", "dd@mail.com");
+		customerService.addVehicleToCustomersVehicles("C-2", "DE-JW-123");
 		customerService.addVehicleToCustomersVehicles("C-2", "KL-JW-123");
-		customerService.addVehicleToCustomersVehicles("C-1", "KL-TW-1906");
+		customerService.addVehicleToCustomersVehicles("C-1", "DE-XX-1111");
 
-		userService.createAndAddNewDispatcherUser("towi1001", "Tom", "Williard");
-		userService.createAndAddNewClientadvisorUser("jawa1002", "Jakub", "Wachowiak");
-		userService.createAndAddNewCarMechanicUser("camo1002", "Caroline", "Mock");
+		userService.createAndAddNewDispatcherUser("jemo1000", "Jerry", "Mouse");
+		userService.createAndAddNewClientadvisorUser("jawa1000", "Jakub", "Wachowiak");
+		userService.createAndAddNewCarMechanicUser("dodu1002", "Donald", "Duck");
 		userService.createAndAddNewCarMechanicUser("ABT Sportsline", "Daniel", "Abt");
 		userService.createAndAddNewCarMechanicUser("JP Performance", "Jean Pierre", "Kraemer");
 		userService.createAndAddNewDispatcherUser("UserToRemove", "Use", "Remover");
@@ -98,24 +98,23 @@ public class MainApplication {
 		worksToPerform2.add("W-4");
 		worksToPerform2.add("W-5");
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform1, "C-2", "KL-JW-123", "WP-2",
-				LocalDateTime.of(2021, 12, 28, 9, 30), "camo1002");
-		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-1", "KL-TW-1906", "WP-3",
-				LocalDateTime.of(2021, 12, 26, 10, 00), "camo1002");
+				LocalDateTime.of(2021, 12, 28, 9, 30), "dodu1002");
+		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-1", "DE-XX-1111", "WP-3",
+				LocalDateTime.of(2021, 12, 26, 10, 00), "dodu1002");
 
 		plannerService.createAndAddNewConsultingAppointment("C-1", 60, LocalDateTime.of(2021, 12, 22, 8, 00),
-				"jawa1002");
+				"jawa1000");
 		plannerService.createAndAddNewConsultingAppointment("C-2", 30, LocalDateTime.of(2021, 12, 24, 9, 30),
-				"jawa1002");
+				"jawa1000");
 		plannerService.createAndAddNewConsultingAppointment("C-3", 45, LocalDateTime.of(2021, 12, 23, 11, 00),
-				"jawa1002");
+				"jawa1000");
 
 		plannerService.createAndAddNewCleaningAppointment(CleaningAppointmentType.QUICK, "WP-4",
-				LocalDateTime.of(2021, 12, 25, 8, 00), "towi1001");
+				LocalDateTime.of(2021, 12, 25, 8, 00), "jemo1000");
 		plannerService.createAndAddNewCleaningAppointment(CleaningAppointmentType.INTENSIVE, "WP-2",
-				LocalDateTime.of(2021, 12, 22, 8, 0), "towi1001");
+				LocalDateTime.of(2021, 12, 22, 8, 0), "jemo1000");
 		plannerService.createAndAddNewCleaningAppointment(CleaningAppointmentType.INTENSIVE, "WP-3",
-				LocalDateTime.of(2021, 12, 24, 8, 30), "towi1001");
-
+				LocalDateTime.of(2021, 12, 24, 8, 30), "jemo1000");
 	}
 
 	// MVP 01
@@ -156,9 +155,9 @@ public class MainApplication {
 	private static void testVehicleClasses() {
 		System.out.println("\n---Testing Vehicle, Vehicle Service and VehicleData---");
 		System.out.println("All vehicles: " + vehicleService.getAllVehicles());
-		vehicleService.updateVehicleLicensePlate("KL-TW-1906", "KL-TW-196");
+		vehicleService.updateVehicleLicensePlate("DE-XX-1111", "DE-XX-111");
 		System.out.println("All vehicles after updating a license plate: " + vehicleService.getAllVehicles());
-		vehicleService.removeVehicle("ZW-JN-156");
+		vehicleService.removeVehicle("DE-JW-123");
 		System.out.println("After removing Vehicle with License Plate KL-JW-123: " + vehicleService.getAllVehicles());
 
 		System.out.println("\n---Error testing in Vehicle, Vehicle Service and VehicleData---");
@@ -186,12 +185,12 @@ public class MainApplication {
 	private static void testUserClasses() {
 		System.out.println("\n---Testing Users---");
 		System.out.println("All users: " + userService.getAllUsers());
-		userService.updateNameOfUser("towi1001", "Tom", "Williard");
+		userService.updateNameOfUser("jemo1000", "Jerry", "Mouse");
 		userService.removeUser("UserToRemove");
 		System.out.println("After removing user UserToRemove: " + userService.getAllUsers());
 
 		System.out.println("---Error testing in User Classes---");
-		userService.createAndAddNewDispatcherUser("towi1001", "Tom", "Williard");
+		userService.createAndAddNewDispatcherUser("jemo1000", "Jerry", "Mouse");
 	}
 
 	// MVP05, MMP02, MMP03, MLP02
@@ -215,17 +214,17 @@ public class MainApplication {
 		worksToPerform2.add("W-4");
 		worksToPerform2.add("W-5");
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-1", "KL-JW-123", "WP-3",
-				LocalDateTime.of(2021, 12, 26, 10, 00), "camo1002");
-		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-1", "KL-TW-1", "WP-3",
-				LocalDateTime.of(2021, 12, 26, 10, 00), "camo1002");
-		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-100", "KL-TW-16", "WP-3",
-				LocalDateTime.of(2021, 12, 26, 10, 00), "camo1002");
-		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-100", "KL-TW-16", "WP-99",
-				LocalDateTime.of(2021, 12, 26, 10, 00), "camo1002");
+				LocalDateTime.of(2021, 12, 26, 10, 00), "dodu1002");
+		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-1", "DE-XX-1", "WP-3",
+				LocalDateTime.of(2021, 12, 26, 10, 00), "dodu1002");
+		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-100", "DE-XX-16", "WP-3",
+				LocalDateTime.of(2021, 12, 26, 10, 00), "dodu1002");
+		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-100", "DE-XX-16", "WP-99",
+				LocalDateTime.of(2021, 12, 26, 10, 00), "dodu1002");
 		plannerService.updateWorkingAppointment("A-100", "WP-2", LocalDateTime.of(2021, 12, 25, 10, 30));
 		System.err.println("---Testing appointment overlaps---");
-		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-1", "KL-TW-1906", "WP-2",
-				LocalDateTime.of(2021, 12, 26, 10, 5), "camo1002");
+		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-1", "DE-XX-1111", "WP-2",
+				LocalDateTime.of(2021, 12, 26, 10, 5), "dodu1002");
 
 	}
 
@@ -243,12 +242,12 @@ public class MainApplication {
 
 		System.out.println("---Error testing in ConsultingAppointment---");
 		plannerService.createAndAddNewConsultingAppointment("C-100", 60, LocalDateTime.of(2021, 12, 22, 13, 30),
-				"jawa1002");
+				"jawa1000");
 		plannerService.updateConsultingAppointment("A-101", 15, LocalDateTime.of(2021, 12, 20, 10, 00));
 
 		System.err.println("---Testing appointment overlaps---");
 		plannerService.createAndAddNewConsultingAppointment("C-2", 30, LocalDateTime.of(2021, 12, 24, 9, 30),
-				"jawa1002");
+				"jawa1000");
 	}
 
 	// MVP05, MMP02, MLP02
@@ -266,10 +265,10 @@ public class MainApplication {
 
 		System.out.println("---Error testing in CleaningAppointment---");
 		plannerService.createAndAddNewCleaningAppointment(CleaningAppointmentType.QUICK, "WP-200",
-				LocalDateTime.of(2021, 12, 25, 8, 00), "towi1001");
+				LocalDateTime.of(2021, 12, 25, 8, 00), "jemo1000");
 		System.err.println("---Testing appointment overlaps---");
 		plannerService.createAndAddNewCleaningAppointment(CleaningAppointmentType.QUICK, "WP-4",
-				LocalDateTime.of(2021, 12, 25, 8, 10), "towi1001");
+				LocalDateTime.of(2021, 12, 25, 8, 10), "jemo1000");
 	}
 
 	// MVP05
@@ -295,7 +294,7 @@ public class MainApplication {
 		System.out.println("Testing for week 50:");
 		plannerService.printSortedAppointmentOverviewOfWeek(50);
 		plannerService.createAndAddNewConsultingAppointment("C-2", 30, LocalDateTime.of(2021, 12, 13, 0, 0),
-				"jawa1002");
+				"jawa1000");
 		System.out.println("Testing for week 50 after adding an Appointment on a Date in this week:");
 		plannerService.printSortedAppointmentOverviewOfWeek(50);
 		System.out.println("\nTesting for week 51:");
@@ -316,12 +315,12 @@ public class MainApplication {
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-2", "KL-JW-123", "WP-2",
 				LocalDateTime.now()
 						.minusDays(1),
-				"camo1002");
+				"dodu1002");
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-2", "KL-JW-123", "WP-1",
 				LocalDateTime.now()
 						.minusDays(1)
 						.minusMinutes(180),
-				"camo1002");
+				"dodu1002");
 		plannerService.changeWorkingAppointmentStatusOf_To("A-9", WorkingAppointmentStatus.FINISHED);
 		plannerService.changeWorkingAppointmentStatusOf_To("A-10", WorkingAppointmentStatus.FINISHED);
 		plannerService.printAllWorkingAppointmentsOfYesterday();
@@ -337,18 +336,18 @@ public class MainApplication {
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-2", "KL-JW-123", "WP-2",
 				LocalDateTime.now()
 						.minusDays(1),
-				"camo1002");
+				"dodu1002");
 		plannerService.changeWorkingAppointmentStatusOf_To("A-9", WorkingAppointmentStatus.FINISHED);
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-2", "KL-JW-123", "WP-3",
-				LocalDateTime.now(), "camo1002");
+				LocalDateTime.now(), "dodu1002");
 		plannerService.changeWorkingAppointmentStatusOf_To("A-10", WorkingAppointmentStatus.FINISHED);
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform2, "C-2", "KL-JW-123", "WP-2",
-				LocalDateTime.of(2022, 1, 2, 15, 0), "camo1002");
+				LocalDateTime.of(2022, 1, 2, 15, 0), "dodu1002");
 		plannerService.changeWorkingAppointmentStatusOf_To("A-11", WorkingAppointmentStatus.FINISHED);
 		vehicleService.printHistoryOfFinishedWorkingAppointments("KL-JW-123");
 
 		System.out.println("\n---Error testing for vehicle with no history of working appointments---");
-		vehicleService.printHistoryOfFinishedWorkingAppointments("ZW-JN-156");
+		vehicleService.printHistoryOfFinishedWorkingAppointments("DE-JW-123");
 	}
 
 	// MLP01
@@ -361,14 +360,14 @@ public class MainApplication {
 		worksToPerform1.add("W-2");
 		plannerService.createAndAddNewWorkingAppointment(worksToPerform1, "C-2", "KL-JW-123", "WP-2",
 				LocalDateTime.now(), "JP Performance");
-		plannerService.createAndAddNewWorkingAppointment(worksToPerform1, "C-2", "ZW-JN-156", "WP-3",
+		plannerService.createAndAddNewWorkingAppointment(worksToPerform1, "C-2", "DE-JW-123", "WP-3",
 				LocalDateTime.now()
 						.plusMinutes(60),
 				"JP Performance"); // if checked after 23 o´clock only one will be
 									// shown ;)
 		plannerService.printAllSortedOpenWorkingAppointmentsOfTodayFor("JP Performance");
 		System.out.println("\nError-Testing for non-existing working appointments for car mechanic:");
-		plannerService.printAllSortedOpenWorkingAppointmentsOfTodayFor("camo1002");
+		plannerService.printAllSortedOpenWorkingAppointmentsOfTodayFor("dodu1002");
 	}
 
 	// MLP030
@@ -377,9 +376,9 @@ public class MainApplication {
 		System.out.println("\n---Testing creation of next available cleaning appointment---");
 		// test purpose only Appointments
 		plannerService.createAndAddNewCleaningAppointment(CleaningAppointmentType.QUICK, "WP-2", LocalDateTime.now()
-				.plusHours(1), "towi1001");
+				.plusHours(1), "jemo1000");
 		plannerService.createAndAddNewCleaningAppointment(CleaningAppointmentType.INTENSIVE, "WP-2", LocalDateTime.now()
-				.plusHours(2), "towi1001");
+				.plusHours(2), "jemo1000");
 		Set<String> worksToPerform1 = new HashSet<>();
 		worksToPerform1.add("W-3");
 		worksToPerform1.add("W-2");
@@ -393,7 +392,7 @@ public class MainApplication {
 		plannerService.printAppointmentsDetailedFor(
 				plannerService.getAllOpenSortedAppointmentsOnWorkingPlatformAfterNow("WP-2"));
 		System.out.print("\n--->Creating next available: ");
-		plannerService.createAndAddNextAvailableCleaningAppointment(CleaningAppointmentType.QUICK, "WP-2", "towi1001");
+		plannerService.createAndAddNextAvailableCleaningAppointment(CleaningAppointmentType.QUICK, "WP-2", "jemo1000");
 		System.out.println("\nAfter:");
 		plannerService.printAppointmentsDetailedFor(
 				plannerService.getAllOpenSortedAppointmentsOnWorkingPlatformAfterNow("WP-2"));
@@ -449,15 +448,15 @@ public class MainApplication {
 		plannerService.createAndAddNewWorkingAppointment(worksToPerformSuggestion5, "C-2", "KL-JW-123", "WP-1",
 				LocalDateTime.now()
 						.plusMinutes(120),
-				"camo1002");
+				"dodu1002");
 		plannerService.createAndAddNewWorkingAppointment(worksToPerformSuggestion1, "C-2", "KL-JW-123", "WP-1",
 				LocalDateTime.now()
 						.plusMinutes(60),
-				"camo1002");
+				"dodu1002");
 		plannerService.createAndAddNewWorkingAppointment(worksToPerformSuggestion1, "C-2", "KL-JW-123", "WP-2",
 				LocalDateTime.now()
 						.plusMinutes(30),
-				"camo1002");
+				"dodu1002");
 
 		System.out.println("Existing Appointments: ");
 		plannerService.printAppointmentsDetailedFor(
