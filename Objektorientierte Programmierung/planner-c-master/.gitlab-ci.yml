@@ -1,0 +1,53 @@
+#include:
+#  - template: Code-Quality.gitlab-ci.yml
+
+variables:
+  # This will suppress any download for dependencies and plugins or upload messages which would clutter the console log.
+  # `showDateTime` will show the passed time in milliseconds. You need to specify `--batch-mode` to make this work.
+  MAVEN_OPTS: "-Dhttps.protocols=TLSv1.2 -Dmaven.repo.local=$CI_PROJECT_DIR/.m2/repository -Dorg.slf4j.simpleLogger.log.org.apache.maven.cli.transfer.Slf4jMavenTransferListener=WARN -Dorg.slf4j.simpleLogger.showDateTime=true -Djava.awt.headless=true"
+
+# This template uses jdk8 for verifying and deploying images
+image: maven:3.3.9-jdk-8
+
+# Cache downloaded dependencies and plugins between builds.
+# To keep cache across branches add 'key: "$CI_JOB_NAME"'
+cache:
+  paths:
+    - .m2/repository
+
+junit-testing:
+  stage: test
+  script:    
+    - mkdir -p target/spotbugs
+    - mvn verify spotbugs:spotbugs compile pmd:pmd
+  artifacts:
+    when: always
+    expire_in: 1 week
+    paths: 
+      - target/spotbugs/spotbugsXml.html    
+      - target/pmd.xml
+    reports:
+      junit:
+        - target/surefire-reports/TEST-*.xml
+
+#junit-tests:
+#  stage: test
+#  script:
+#    - mvn verify spotbugs:spotbugs compile
+#  artifacts:
+#    when: always
+#    paths: 
+#      - target/spotbugs/spotbugsXml.html
+#    reports:
+#      junit:
+#        - target/surefire-reports/TEST-*.xml
+
+#spotbugs:
+#   stage: test
+#   script:
+#    - mvn spotbugs:spotbugs compile
+#   artifacts:
+#    when: always
+#    paths: 
+#      - target/spotbugs/spotbugsXml.html
+
