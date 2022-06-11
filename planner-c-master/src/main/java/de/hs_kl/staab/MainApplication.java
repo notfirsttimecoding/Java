@@ -76,7 +76,7 @@ public class MainApplication {
 
 		customerService.createAndAddNewCustomer("Tom", "Williard", "Blumenstraße", 8, 67697, "Otterberg", "0162-123456",
 				"test@123.de");
-		customerService.createAndAddNewCustomer("Jakub", "Wachowiak", "Virginiastraße", 14, 66482, "Zweibrücken",
+		customerService.createAndAddNewCustomer("Jakub", "Wachowiak", "Musterstraße", 99, 99999, "Berlin",
 				"0631-124562", "jw@gmail.com");
 		customerService.createAndAddNewCustomer("Caroline", "Mock", "Stadtrand", 007, 66538, "Neunkirchen",
 				"0172-13288456", "cm@mail.com");
